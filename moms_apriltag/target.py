@@ -196,8 +196,8 @@ class ApriltagBoard:
         arucoTagName = arucoTags[self.family]
         corners, ids, rejectedImgPts = aruco.detectMarkers(
             gray,
-            aruco.Dictionary_get(arucoTagName),
-            parameters=aruco.DetectorParameters_create(),
+            aruco.getPredefinedDictionary(arucoTagName),
+            parameters=aruco.DetectorParameters(),
         )
         if corners is None or ids is None:
             return False, None, None
@@ -267,7 +267,7 @@ class ApriltagBoard:
     @property
     def board(self):
         return self.__target
-
+    
     # def imagePoints(self):
     #     """
     #     Returns a set of the target's ideal 3D feature points.
